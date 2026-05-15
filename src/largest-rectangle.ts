@@ -1,1 +1,31 @@
-function largestRectangleArea(heights: number[]): number {\n  const stack: number[] = [];\n  let maxArea = 0;\n  const n = heights.length;\n\n  for (let i = 0; i <= n; i++) {\n    const currentHeight = i === n ? 0 : heights[i]!;\n\n    while (stack.length > 0) {\n      const topIndex = stack[stack.length - 1];\n      if (topIndex === undefined || currentHeight >= heights[topIndex]!) {\n        break;\n      }\n\n      const height = heights[stack.pop()!];\n      const width = stack.length === 0 ? i : i - stack[stack.length - 1]! - 1;\n      maxArea = Math.max(maxArea, (height ?? 0) * width);\n    }\n\n    stack.push(i);\n  }\n\n  return maxArea;\n}\n\nexport { largestRectangleArea };\n\n// Example usage:\n// const heights = [2,1,5,6,2,3];\n// const result = largestRectangleArea(heights);\n// console.log(result);\n// Expected: 10\n//\n// Explanation: The histogram [5,6] at indices 2-3 forms a rectangle of height 5 and width 2 = area 10\n
+function largestRectangleArea(heights: number[]): number {
+  const stack: number[] = [];
+  let maxArea = 0;
+  const n = heights.length;
+
+  for (let i = 0; i <= n; i++) {
+    const currentHeight = i === n ? 0 : heights[i]!;
+
+    while (stack.length > 0) {
+      const topIndex = stack[stack.length - 1];
+      if (topIndex === undefined || currentHeight >= heights[topIndex]!) {
+        break;
+      }
+
+      const height = heights[stack.pop()!];
+      const width = stack.length === 0 ? i : i - stack[stack.length - 1]! - 1;
+      maxArea = Math.max(maxArea, (height ?? 0) * width);
+    }
+
+    stack.push(i);
+  }
+
+  return maxArea;
+}
+
+export { largestRectangleArea };
+
+// Example usage:
+// const heights = [2, 1, 5, 6, 2, 3];
+// const result = largestRectangleArea(heights);
+// console.log(result);
