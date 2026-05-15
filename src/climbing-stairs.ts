@@ -1,1 +1,23 @@
-const climbStairs = (n: number): number => {\n  if (n <= 2) {\n    return n;\n  }\n\n  let prev1 = 1;\n  let prev2 = 2;\n\n  for (let i = 3; i <= n; i++) {\n    const current = prev1 + prev2;\n    prev1 = prev2;\n    prev2 = current;\n  }\n\n  return prev2;\n}\n\nexport { climbStairs };\n\n// Example usage:\n// const result = climbStairs(5);\n// console.log(result);\n// Expected: 8\n
+const climbStairs = (n: number): number => {
+  if (n <= 2) {
+    return n;
+  }
+
+  let prev1 = 1;
+  let prev2 = 2;
+
+  for (let i = 3; i <= n; i++) {
+    const current = prev1 + prev2;
+    prev1 = prev2;
+    prev2 = current;
+  }
+
+  return prev2;
+}
+
+export { climbStairs };
+
+// Example usage:
+// const result = climbStairs(5);
+// console.log(result);
+// Expected: 8
